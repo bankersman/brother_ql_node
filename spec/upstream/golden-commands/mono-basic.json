@@ -1,0 +1,16 @@
+{
+  "name": "mono-basic",
+  "model": "QL-710W",
+  "label": "62",
+  "options": {
+    "rotate": "auto",
+    "compress": false,
+    "cut": true,
+    "dpi_600": false,
+    "red": false,
+    "threshold": 70,
+    "dither": false
+  },
+  "input_image": "fixtures/images/example.png",
+  "instruction_hex": "1b40"
+}

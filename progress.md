@@ -7,7 +7,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 0 - Repository Bootstrap and Planning Ledger
 - [x] Step 1 - Workspace and Tooling Foundation
 - [x] Step 2 - Core Package Skeleton (`@brother-ql/core`)
-- [ ] Step 3 - Golden Fixture Harness
+- [x] Step 3 - Golden Fixture Harness
 - [ ] Step 4 - Command Generation MVP
 - [ ] Step 5 - Command Generation Parity Expansion
 - [ ] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
@@ -38,3 +38,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added core domain contracts for models, labels, options, command buffers, status frames, and transport interface
   - Added package exports map for root and contracts entry points
   - Added type-level coverage in unit tests for contract usability
+- Completed Step 3 golden fixture harness:
+  - Added deterministic JSON fixture loading for golden command fixtures
+  - Added reusable hex/byte conversion helpers for parity assertions
+  - Added initial upstream fixture subset with passing harness tests
