@@ -2,6 +2,8 @@
 
 This project ships a small **Vite demo** built with [`@brother-ql/web`](https://github.com/bankersman/brother-ql-node/tree/main/packages/web) — the high-level browser SDK on top of [`@brother-ql/core`](https://github.com/bankersman/brother-ql-node/tree/main/packages/core) and [`@brother-ql/transport-web`](https://github.com/bankersman/brother-ql-node/tree/main/packages/transport-web).
 
+Install the SDK from npm: `pnpm add @brother-ql/web`. Full API and options are in the [**package README**](https://github.com/bankersman/brother-ql-node/blob/main/packages/web/README.md) (`BrotherQlWebClient`, `connect` / `print` / `dispose`). For Node.js printing, use **`@brother-ql/node`** ([App integration](../guide/app-integration.md)); for CLI commands in Node, use **`@brother-ql/cli`** ([CLI usage](../cli/overview.md)).
+
 ## WebUSB (recommended on the hosted site)
 
 For the live app on GitHub Pages, **WebUSB** is the path that usually works:

@@ -2,6 +2,8 @@
 
 **@brother-ql/web** is the **browser SDK** for printing to Brother QL hardware. It composes **`@brother-ql/core`** (command generation and blocking send) with **`@brother-ql/transport-web`** (WebUSB and experimental Chrome Direct Sockets TCP).
 
+**When to use:** web apps bundled for **Chromium** (or other browsers that expose the needed APIs), with a **secure context** (HTTPS or `localhost`). For **Node.js** servers and desktop tools, use **`@brother-ql/node`**. For **CLI** commands and registry dumps in Node, use **`@brother-ql/cli`** — not this package.
+
 ## Documentation
 
 - **Site:** [https://bankersman.github.io/brother-ql-node/](https://bankersman.github.io/brother-ql-node/)
@@ -63,4 +65,5 @@ const result = await client.print({
 
 - **`@brother-ql/core`** — protocol and model/label data
 - **`@brother-ql/transport-web`** — low-level `RuntimeTransport` implementations; prefer **`@brother-ql/web`** for application code
-- **`@brother-ql/node`** — production-oriented printing on Node.js
+- **`@brother-ql/node`** — TCP/USB printing on Node.js (`BrotherQlNodeClient`)
+- **`@brother-ql/cli`** — `runCli()` parity commands for Node scripts (not for browser bundles)

@@ -1,6 +1,6 @@
 # CLI usage
 
-`@brother-ql/cli` currently exposes a parity-oriented command surface through `runCli()`.
+**`@brother-ql/cli`** exposes **`runCli()`** for parity-style commands in **Node.js** — not for browser bundles. For **programmatic printing**, use **`@brother-ql/node`** (TCP/USB on Node) or **`@brother-ql/web`** (WebUSB / experimental TCP in the page); see [App integration](../guide/app-integration.md) and [Try in the browser](../guide/try-in-browser.md).
 
 ## Commands available today
 

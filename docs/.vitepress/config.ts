@@ -16,7 +16,7 @@ function resolveBase() {
 
 export default defineConfig({
   title: "brother-ql-node",
-  description: "User docs for Brother QL printing from Node.js",
+  description: "User docs for Brother QL printing from Node.js and the browser",
   srcDir: "src",
   base: resolveBase(),
   ignoreDeadLinks: [/^\/web-demo(\/.*)?$/],

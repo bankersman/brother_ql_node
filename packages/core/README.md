@@ -1,6 +1,6 @@
 # @brother-ql/core
 
-**@brother-ql/core** holds the shared Brother QL protocol surface: model and label registries, image-to-raster conversion, command framing, status parsing, and blocking-send semantics. Higher-level packages (`@brother-ql/node`, `@brother-ql/transport-node`, `@brother-ql/cli`) build on this layer; it has no printer I/O of its own.
+**@brother-ql/core** holds the shared Brother QL protocol surface: model and label registries, image-to-raster conversion, command framing, status parsing, and blocking-send semantics. Higher-level packages (`@brother-ql/node`, `@brother-ql/web`, `@brother-ql/transport-node`, `@brother-ql/transport-web`, `@brother-ql/cli`) build on this layer; it has no printer I/O of its own.
 
 ## Documentation
 
@@ -22,7 +22,7 @@ From the [brother-ql-node](https://github.com/bankersman/brother-ql-node) monore
 
 ## Usage
 
-Most applications use **`@brother-ql/node`** instead of core directly. When you need shared types or helpers without the Node SDK:
+Most applications use **`@brother-ql/node`** (Node) or **`@brother-ql/web`** (browser) instead of core directly. When you need shared types or helpers without those SDKs:
 
 ```typescript
 import { CORE_PACKAGE_NAME } from "@brother-ql/core";
@@ -40,6 +40,8 @@ import type {
 
 ## Related packages
 
-- **`@brother-ql/node`** — TCP/USB printing entry point for Node.js
+- **`@brother-ql/node`** — TCP/USB printing entry point for Node.js (`BrotherQlNodeClient`)
+- **`@brother-ql/web`** — WebUSB / experimental in-browser TCP (`BrotherQlWebClient`)
 - **`@brother-ql/transport-node`** — TCP and USB transports used by the Node SDK
-- **`@brother-ql/cli`** — CLI-oriented commands backed by core registries
+- **`@brother-ql/transport-web`** — WebUSB and Direct Sockets transports used by the web SDK
+- **`@brother-ql/cli`** — CLI-oriented commands backed by core registries (`runCli`)

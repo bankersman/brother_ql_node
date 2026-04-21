@@ -4,7 +4,7 @@
 [![Pages](https://github.com/bankersman/brother-ql-node/actions/workflows/pages.yml/badge.svg)](https://bankersman.github.io/brother-ql-node/)
 [![codecov](https://codecov.io/gh/bankersman/brother-ql-node/graph/badge.svg)](https://codecov.io/gh/bankersman/brother-ql-node)
 
-TypeScript workspace for Brother QL printing on modern Node.js, with incremental parity against upstream [`brother_ql`](https://github.com/pklaus/brother_ql).
+TypeScript workspace for Brother QL printing from **Node.js** or **Chromium-based browsers**, with incremental parity against upstream [`brother_ql`](https://github.com/pklaus/brother_ql).
 
 **Credits** — This project owes a great deal to **Philipp Klaus** and the [brother_ql](https://github.com/pklaus/brother_ql) Python library: protocol reverse engineering, model and label registries, and a de facto reference implementation the community has relied on for years. `brother-ql-node` is an independent TypeScript port and is not affiliated with Brother Industries.
 
@@ -15,9 +15,20 @@ TypeScript workspace for Brother QL printing on modern Node.js, with incremental
 - Local preview: `pnpm docs:dev`
 - Production build (same as GitHub Pages): `pnpm docs:build` — also builds the embedded **web demo** at `/web-demo/` (see `build:web-demo-for-docs` in root `package.json`)
 
+## Which package?
+
+| Package                | Use it when                                                                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **`@brother-ql/node`** | You ship a **Node.js** app or server and want TCP (`9100`) or **USB** printing with a small high-level client (`BrotherQlNodeClient`). |
+| **`@brother-ql/web`**  | You ship a **browser** app (bundler) and want **WebUSB** or experimental **Direct Sockets TCP** (`BrotherQlWebClient`).                |
+| **`@brother-ql/cli`**  | You want **parity-style commands** (`info models`, `info labels`, …) via `runCli()` for scripts or tooling — not for browser bundles.  |
+| **`@brother-ql/core`** | You need protocol types, command generation, or registries **without** tying to a specific transport SDK.                              |
+
+Lower-level transports: `@brother-ql/transport-node` and `@brother-ql/transport-web` implement `RuntimeTransport` for custom wiring.
+
 ## Usage
 
-Use **Node.js 24+** to match `engines` and CI.
+Use **Node.js 24+** for Node-targeted packages to match `engines` and CI. Browser usage requires a secure context (HTTPS or `localhost`) and a modern Chromium-based browser for WebUSB.
 
 ### From npm
 
@@ -85,14 +96,34 @@ console.log(
 
 Defaults come from env: `BROTHER_QL_BACKEND`, `BROTHER_QL_MODEL`, `BROTHER_QL_PRINTER`. The default runtime still stubs `print` / `send` / `discover` strings; `info models` and `info labels` use the real registry.
 
+### Browser — WebUSB (`@brother-ql/web`)
+
+Use **`connect()`** after a user gesture, then **`print()`** (see the [package README](packages/web/README.md) and [Try in browser](https://bankersman.github.io/brother-ql-node/guide/try-in-browser) on the docs site):
+
+```typescript
+import { BrotherQlWebClient } from "@brother-ql/web";
+
+const client = new BrotherQlWebClient({ backend: "webusb" });
+await client.connect();
+
+const result = await client.print({
+  model: "QL-820NWB",
+  label: "62",
+  imageBytes: new Uint8Array([255, 255, 0, 0]),
+  timeoutMs: 30_000
+});
+
+await client.dispose();
+```
+
 ## Packages
 
 - `@brother-ql/core`: contracts, command generation, parity harness, and blocking send semantics.
-- `@brother-ql/transport-node`: TCP and USB transport implementations.
-- `@brother-ql/node`: high-level SDK for Node applications.
-- `@brother-ql/web`: high-level SDK for browser applications (WebUSB and experimental Direct Sockets TCP).
-- `@brother-ql/cli`: V1 parity command surface for common operations.
+- `@brother-ql/transport-node`: TCP and USB transport implementations for Node.
+- `@brother-ql/node`: high-level SDK for **Node** applications (TCP/USB printing).
 - `@brother-ql/transport-web`: low-level browser `RuntimeTransport` implementations (WebUSB, Direct Sockets TCP).
+- `@brother-ql/web`: high-level SDK for **browser** applications (prefers `@brother-ql/web` over using `transport-web` directly in app code).
+- `@brother-ql/cli`: parity-oriented command surface (`runCli`) for scripts and inspection.
 
 ## Development
 

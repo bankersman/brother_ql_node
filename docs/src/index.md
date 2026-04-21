@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: brother-ql-node
-  text: Brother QL printing from Node.js
-  tagline: TypeScript port of the upstream brother_ql project for TCP and USB printing workflows.
+  text: Brother QL printing from Node.js or the browser
+  tagline: TypeScript port of brother_ql for Node TCP/USB, CLI workflows, and Chromium WebUSB (experimental Direct Sockets TCP).
   actions:
     - theme: brand
       text: App integration
@@ -32,6 +32,10 @@ features:
     details: Commands map to common brother_ql workflows for inspection, send operations, and scripting.
     link: /cli/overview
     linkText: CLI usage
+  - title: Browser SDK
+    details: Use @brother-ql/web for WebUSB printing from a secure page; optional experimental TCP via Chrome Direct Sockets.
+    link: /guide/try-in-browser
+    linkText: Try in browser
 
 footer: |
   <p><strong>Acknowledgements</strong> — This project is not affiliated with Brother Industries. It is an independent TypeScript port.</p>

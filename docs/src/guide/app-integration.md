@@ -1,6 +1,14 @@
 # App integration
 
-Use `@brother-ql/node` when your application needs a simple entry point for printing.
+This page covers **`@brother-ql/node`** — the Node.js printing client (`BrotherQlNodeClient`) over TCP or USB.
+
+## Choosing a package
+
+| Goal                                                    | Package                                                               |
+| ------------------------------------------------------- | --------------------------------------------------------------------- |
+| Node.js app, TCP or USB printing                        | **`@brother-ql/node`** (this page)                                    |
+| Browser app, WebUSB or experimental in-page TCP         | **`@brother-ql/web`** — see [Try in the browser](./try-in-browser.md) |
+| Scripts, `info models` / `info labels`, parity commands | **`@brother-ql/cli`** — see [CLI usage](../cli/overview.md)           |
 
 ## Prerequisites
 
@@ -8,9 +16,9 @@ Use `@brother-ql/node` when your application needs a simple entry point for prin
 - `pnpm install` run at repo root
 - Access to a Brother QL printer over TCP (`9100`) or USB
 
-## Important status of package publishing
+## Install from npm
 
-Packages in this workspace are currently marked `private`, so treat this as a monorepo integration flow for now.
+Published packages live under the **`@brother-ql`** scope on npm. From the monorepo you can also depend on workspace packages after `pnpm build`.
 
 ## TCP quickstart
 
@@ -83,4 +91,4 @@ Programmatic helpers are available in core registry exports if you need discover
 
 ## Next step
 
-After this page, read [Troubleshooting](./troubleshooting.md) and [CLI usage](../cli/overview.md) if your deployment also needs scripts or automation commands.
+After this page, read [Troubleshooting](./troubleshooting.md). For CLI-style commands see [CLI usage](../cli/overview.md). For **browser** printing see [Try in the browser](./try-in-browser.md).

@@ -2,6 +2,8 @@
 
 **@brother-ql/node** is the main **Node.js SDK** for printing to Brother QL hardware over **TCP** (network, usually port `9100`) or **USB**. It composes **`@brother-ql/core`** (command generation and registries) with **`@brother-ql/transport-node`** (TCP/USB I/O).
 
+**When to use:** Node backends, servers, and desktop tooling that run on Node.js. For **browser** printing (WebUSB / experimental TCP in the page), use **`@brother-ql/web`**. For **CLI-style** commands and registry inspection without building a print client, see **`@brother-ql/cli`**.
+
 ## Documentation
 
 - **Site:** [https://bankersman.github.io/brother-ql-node/](https://bankersman.github.io/brother-ql-node/)
@@ -40,3 +42,5 @@ const result = await client.print({
 
 - **`@brother-ql/core`** — protocol and model/label data
 - **`@brother-ql/transport-node`** — low-level TCP and USB transports
+- **`@brother-ql/web`** — browser SDK (`BrotherQlWebClient`) when the app runs in Chromium with WebUSB or Direct Sockets
+- **`@brother-ql/cli`** — `runCli()` parity commands (`info models`, `info labels`, …) for scripts
