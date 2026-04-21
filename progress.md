@@ -10,7 +10,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 3 - Golden Fixture Harness
 - [x] Step 4 - Command Generation MVP
 - [x] Step 5 - Command Generation Parity Expansion
-- [ ] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
+- [x] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
 - [ ] Step 7 - Blocking Send and Status Semantics
 - [ ] Step 8 - USB Backend for Node
 - [ ] Step 9 - High-Level Node SDK API
@@ -50,3 +50,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added quality, dither, threshold, and two-color command flags in baseline generator
   - Added input validation for model/label and threshold bounds
   - Added expanded option and negative-path tests
+- Completed Step 6 network-first node transport:
+  - Added TCP transport backend with connect, write, read, and dispose lifecycle
+  - Added timeout handling for connect/write/read operations
+  - Added integration-style tests for successful flow and read timeout behavior

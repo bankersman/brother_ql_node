@@ -35,3 +35,6 @@ and this project aims to follow Semantic Versioning.
 - Expanded parity options:
   - Added threshold, dither, high-quality, and two-color option command handling
   - Added validation for invalid model/label identifiers and threshold bounds
+- Node TCP transport backend:
+  - Added network transport implementation for raw TCP (`9100`) printer communication
+  - Added lifecycle and timeout semantics with integration-style coverage
