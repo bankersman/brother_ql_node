@@ -9,6 +9,10 @@ and this project aims to follow Semantic Versioning.
 
 ### Added
 
+- Parity remediation baseline:
+  - Added `docs/analysis/parity-matrix.md` mapping upstream `brother_ql` responsibilities to TypeScript targets
+  - Documented strict parity acceptance criteria and known non-parity scaffold paths
+
 - Initial planning and tracking artifacts:
   - `PLAN.md`
   - `progress.md`
