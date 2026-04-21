@@ -2,7 +2,7 @@ import type {
   RuntimeTransport,
   TransportReadRequest,
   TransportWriteRequest
-} from "../../core/src/index.js";
+} from "@brother-ql/core";
 
 export interface UsbDeviceInfo {
   vendorId: number;

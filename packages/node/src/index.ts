@@ -1,5 +1,5 @@
-import { generateBaselineCommand, sendBlocking } from "../../core/src/index.js";
-import { TcpTransport, UsbTransport } from "../../transport-node/src/index.js";
+import { generateBaselineCommand, sendBlocking } from "@brother-ql/core";
+import { TcpTransport, UsbTransport } from "@brother-ql/transport-node";
 
 export type NodeBackend = "tcp" | "usb";
 

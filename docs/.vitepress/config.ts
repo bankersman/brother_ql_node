@@ -60,7 +60,7 @@ export default defineConfig({
       }
     ],
     socialLinks: [
-      { icon: "github", link: "https://github.com/bankersman/brother_ql_node" }
+      { icon: "github", link: "https://github.com/bankersman/brother-ql-node" }
     ]
   }
 });

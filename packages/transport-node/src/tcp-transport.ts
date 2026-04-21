@@ -4,7 +4,7 @@ import type {
   RuntimeTransport,
   TransportReadRequest,
   TransportWriteRequest
-} from "../../core/src/index.js";
+} from "@brother-ql/core";
 
 export interface TcpTransportOptions {
   host: string;

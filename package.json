@@ -9,6 +9,8 @@
     "node": ">=24"
   },
   "scripts": {
+    "build": "pnpm -r run build",
+    "assert-release-version": "node scripts/assert-release-version.mjs",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

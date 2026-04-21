@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { BrotherQlNodeClient } from "./index.js";
-import type { TcpTransport } from "../../transport-node/src/index.js";
-import { UsbTransport } from "../../transport-node/src/index.js";
+import type { TcpTransport } from "@brother-ql/transport-node";
+import { UsbTransport } from "@brother-ql/transport-node";
 
 describe("node sdk api", () => {
   it("constructs usb client and executes print path", async () => {

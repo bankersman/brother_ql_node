@@ -1,8 +1,8 @@
 # brother-ql-node
 
-[![CI](https://github.com/bankersman/brother_ql_node/actions/workflows/ci.yml/badge.svg)](https://github.com/bankersman/brother_ql_node/actions/workflows/ci.yml)
-[![Pages](https://github.com/bankersman/brother_ql_node/actions/workflows/pages.yml/badge.svg)](https://bankersman.github.io/brother_ql_node/)
-[![codecov](https://codecov.io/gh/bankersman/brother_ql_node/graph/badge.svg)](https://codecov.io/gh/bankersman/brother_ql_node)
+[![CI](https://github.com/bankersman/brother-ql-node/actions/workflows/ci.yml/badge.svg)](https://github.com/bankersman/brother-ql-node/actions/workflows/ci.yml)
+[![Pages](https://github.com/bankersman/brother-ql-node/actions/workflows/pages.yml/badge.svg)](https://bankersman.github.io/brother-ql-node/)
+[![codecov](https://codecov.io/gh/bankersman/brother-ql-node/graph/badge.svg)](https://codecov.io/gh/bankersman/brother-ql-node)
 
 TypeScript workspace for Brother QL printing on modern Node.js, with incremental parity against upstream [`brother_ql`](https://github.com/pklaus/brother_ql).
 
@@ -10,23 +10,29 @@ TypeScript workspace for Brother QL printing on modern Node.js, with incremental
 
 ## Documentation
 
-- **Live site:** [https://bankersman.github.io/brother_ql_node/](https://bankersman.github.io/brother_ql_node/)
+- **Live site:** [https://bankersman.github.io/brother-ql-node/](https://bankersman.github.io/brother-ql-node/)
 - VitePress source: `docs/` (pages under `docs/src/`)
 - Local preview: `pnpm docs:dev`
 - Production build (same as GitHub Pages): `pnpm docs:build`
 
-## Usage (clone this repository)
+## Usage
 
-Packages are workspace `private` today: clone the repo, install once, then import from `packages/...` paths (or wire your app into the workspace). Use **Node.js 24+** to match `engines` and CI.
+Use **Node.js 24+** to match `engines` and CI.
 
-From the repository root after `pnpm install`:
+### From npm
+
+After packages are published for your version:
+
+```bash
+pnpm add @brother-ql/node
+```
 
 ### Print over TCP (`@brother-ql/node`)
 
-Save as `print-tcp.ts` next to `package.json` and run `pnpm exec tsx print-tcp.ts` (adjust `host` / `model` / `label` for your printer):
+Save as `print-tcp.ts` and run with `pnpm exec tsx print-tcp.ts` (adjust `host` / `model` / `label` for your printer):
 
 ```typescript
-import { BrotherQlNodeClient } from "./packages/node/src/index.js";
+import { BrotherQlNodeClient } from "@brother-ql/node";
 
 const client = new BrotherQlNodeClient({
   backend: "tcp",
@@ -47,7 +53,7 @@ console.log(result);
 ### Print over USB (`@brother-ql/node`)
 
 ```typescript
-import { BrotherQlNodeClient } from "./packages/node/src/index.js";
+import { BrotherQlNodeClient } from "@brother-ql/node";
 
 const client = new BrotherQlNodeClient({ backend: "usb" });
 
@@ -64,10 +70,10 @@ USB needs the native `usb` dependency and OS permissions; see the docs site for 
 
 ### CLI (`@brother-ql/cli`)
 
-`runCli` is the programmatic entry (a thin shell binary is not wired yet). Example from the repo root:
+`runCli` is the programmatic entry (a thin shell binary is not wired yet). Example:
 
 ```typescript
-import { runCli } from "./packages/cli/src/index.js";
+import { runCli } from "@brother-ql/cli";
 
 console.log(
   runCli(["info", "models"]).output.split("\n").slice(0, 8).join("\n")
@@ -90,9 +96,12 @@ Defaults come from env: `BROTHER_QL_BACKEND`, `BROTHER_QL_MODEL`, `BROTHER_QL_PR
 ## Development
 
 - Install dependencies: `pnpm install`
+- Build packages: `pnpm build`
 - Validate quality gates:
   - `pnpm lint`
   - `pnpm format:check`
   - `pnpm typecheck`
   - `pnpm test`
   - `pnpm test:coverage` (coverage report and thresholds; uploads in CI when Codecov is configured)
+
+Releases: push a git tag `v*` whose numeric part matches the `version` field in every `packages/*/package.json`, then the [Release workflow](https://github.com/bankersman/brother-ql-node/actions/workflows/release.yml) publishes to npm. Configure [trusted publishing](https://docs.npmjs.com/trusted-publishers) for the `@brother-ql` scope (recommended), or add an `NPM_TOKEN` repository secret and pass it through the `token` input on `actions/setup-node` in that workflow.

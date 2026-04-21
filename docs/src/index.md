@@ -14,7 +14,7 @@ hero:
       link: /guide/supported-hardware-and-media
     - theme: alt
       text: Repository
-      link: https://github.com/bankersman/brother_ql_node
+      link: https://github.com/bankersman/brother-ql-node
 
 features:
   - title: Ported registry data

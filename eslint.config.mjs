@@ -7,11 +7,12 @@ import eslintConfigPrettier from "eslint-config-prettier";
 export default [
   {
     ignores: [
-      "dist/**",
+      "**/dist/**",
       "coverage/**",
       "node_modules/**",
       "docs/.vitepress/dist/**",
-      "docs/.vitepress/cache/**"
+      "docs/.vitepress/cache/**",
+      "scripts/**/*.mjs"
     ]
   },
   js.configs.recommended,

@@ -1,4 +1,4 @@
-import { listLabels, listModels } from "../../core/src/index.js";
+import { listLabels, listModels } from "@brother-ql/core";
 
 export const CLI_PACKAGE_NAME = "@brother-ql/cli";
 
