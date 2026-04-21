@@ -1,0 +1,11 @@
+{
+  "name": "strict-mono-ql710w",
+  "model": "QL-710W",
+  "label": "62",
+  "image_bytes": [1, 2, 3],
+  "options": {
+    "cutAtEnd": true,
+    "compressRaster": false
+  },
+  "expected_sha256": "5dbe0561898c3c7b1fea3d48befa00b1da8de406000fa1149f4f1191e5eafde6"
+}

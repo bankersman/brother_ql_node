@@ -1,0 +1,12 @@
+{
+  "name": "strict-red-ql820nwb",
+  "model": "QL-820NWB",
+  "label": "62red",
+  "image_bytes": [9, 8, 7],
+  "options": {
+    "colorMode": "red-black",
+    "dither": true,
+    "threshold": 80
+  },
+  "expected_sha256": "e3005da22fba897e444b9615c1edbda3486378f9827909e0529a32e935459cb0"
+}

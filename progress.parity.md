@@ -11,7 +11,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
 - [x] Phase 5: Status Frame Parser + Blocking Send Semantics
 - [x] Phase 6: Transport Parity
 - [x] Phase 7: CLI Parity Implementation
-- [ ] Phase 8: Strict Fixture Expansion and Release Gating
+- [x] Phase 8: Strict Fixture Expansion and Release Gating
 
 ## Phase Gate (Every Phase)
 
@@ -57,3 +57,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
   - Replaced canned CLI outputs with runtime-backed command handlers for print/send/discover
   - Added `info env` and env-backed global option support (`BROTHER_QL_BACKEND`, `BROTHER_QL_MODEL`, `BROTHER_QL_PRINTER`)
   - Switched model/label info commands to typed core registries
+- Completed Phase 8:
+  - Added strict golden fixtures with expected full-stream SHA256 hashes
+  - Added strict parity test matrix that validates full generated command stream fingerprints
+  - Added `tsx` tooling to support deterministic fixture vector generation

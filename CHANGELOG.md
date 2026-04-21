@@ -31,6 +31,9 @@ and this project aims to follow Semantic Versioning.
   - Added runtime-backed handlers for `print`, `send`, and `discover` commands
   - Added `info env` and env variable-backed global configuration behavior
   - Updated `info models`/`info labels` to use core registry data
+- Strict golden parity gates:
+  - Added strict golden fixture matrix with expected full-stream SHA256 values
+  - Added strict parity test to enforce complete command stream equality fingerprints
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`
