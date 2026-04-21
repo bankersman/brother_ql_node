@@ -1,3 +1,3 @@
 packages:
   - "packages/*"
-  - "packages/transport-web/demo"
+  - "packages/web/demo"

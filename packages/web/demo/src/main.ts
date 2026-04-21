@@ -1,9 +1,5 @@
-import { sendBlocking } from "@brother-ql/core/blocking-send";
-import { generateBaselineCommand } from "@brother-ql/core/command-generator";
-import {
-  DirectSocketsTcpTransport,
-  WebUsbTransport
-} from "@brother-ql/transport-web";
+import { DirectSocketsTcpTransport } from "@brother-ql/transport-web";
+import { BrotherQlWebClient } from "@brother-ql/web";
 
 const logEl = document.getElementById("log");
 
@@ -32,13 +28,24 @@ async function getImageBytes(): Promise<Uint8Array> {
   return new Uint8Array(buf);
 }
 
-let webUsbTransport: WebUsbTransport | undefined;
-let tcpTransport: DirectSocketsTcpTransport | undefined;
+function getTcpHostPort(): { host: string; port: number } {
+  const host = (document.getElementById("tcp-host") as HTMLInputElement).value;
+  const port = Number(
+    (document.getElementById("tcp-port") as HTMLInputElement).value
+  );
+  return { host, port };
+}
+
+let webUsbClient: BrotherQlWebClient | undefined;
+let tcpReachable = false;
+let tcpHost = "";
+let tcpPort = 9100;
 
 async function onWebUsbConnect(): Promise<void> {
   try {
-    webUsbTransport = new WebUsbTransport();
-    await webUsbTransport.connect();
+    await webUsbClient?.dispose();
+    webUsbClient = new BrotherQlWebClient({ backend: "webusb" });
+    await webUsbClient.connect();
     log("WebUSB connected.");
   } catch (error: unknown) {
     log(error);
@@ -46,20 +53,20 @@ async function onWebUsbConnect(): Promise<void> {
 }
 
 async function onWebUsbPrint(): Promise<void> {
-  if (!webUsbTransport) {
+  if (!webUsbClient) {
     log("Connect WebUSB first.");
     return;
   }
   try {
     const { model, label } = getModelLabel();
     const imageBytes = await getImageBytes();
-    const command = generateBaselineCommand({ model, label, imageBytes });
-    const result = await sendBlocking({
-      transport: webUsbTransport,
-      payload: command.bytes,
+    const result = await webUsbClient.print({
+      model,
+      label,
+      imageBytes,
       timeoutMs: 30_000
     });
-    log("sendBlocking (webusb):", JSON.stringify(result));
+    log("print (webusb):", JSON.stringify(result));
   } catch (error: unknown) {
     log(error);
   }
@@ -67,34 +74,40 @@ async function onWebUsbPrint(): Promise<void> {
 
 async function onTcpConnect(): Promise<void> {
   try {
-    const host = (document.getElementById("tcp-host") as HTMLInputElement)
-      .value;
-    const port = Number(
-      (document.getElementById("tcp-port") as HTMLInputElement).value
-    );
-    tcpTransport = new DirectSocketsTcpTransport({ host, port });
-    await tcpTransport.connect();
-    log("TCP connected (Direct Sockets).");
+    const { host, port } = getTcpHostPort();
+    const probe = new DirectSocketsTcpTransport({ host, port });
+    await probe.connect();
+    await probe.dispose();
+    tcpHost = host;
+    tcpPort = port;
+    tcpReachable = true;
+    log("TCP connect OK (Direct Sockets). You can print (opens a new socket).");
   } catch (error: unknown) {
+    tcpReachable = false;
     log(error);
   }
 }
 
 async function onTcpPrint(): Promise<void> {
-  if (!tcpTransport) {
-    log("Connect TCP first.");
+  if (!tcpReachable) {
+    log("Connect TCP first (validates Direct Sockets + host/port).");
     return;
   }
   try {
     const { model, label } = getModelLabel();
     const imageBytes = await getImageBytes();
-    const command = generateBaselineCommand({ model, label, imageBytes });
-    const result = await sendBlocking({
-      transport: tcpTransport,
-      payload: command.bytes,
+    const client = new BrotherQlWebClient({
+      backend: "tcp",
+      host: tcpHost,
+      port: tcpPort
+    });
+    const result = await client.print({
+      model,
+      label,
+      imageBytes,
       timeoutMs: 15_000
     });
-    log("sendBlocking (tcp):", JSON.stringify(result));
+    log("print (tcp):", JSON.stringify(result));
   } catch (error: unknown) {
     log(error);
   }

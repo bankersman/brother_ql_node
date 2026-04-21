@@ -1,5 +1,5 @@
 {
-  "name": "@brother-ql/transport-web-demo",
+  "name": "@brother-ql/web-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,8 +8,8 @@
     "build": "tsc --noEmit && vite build"
   },
   "dependencies": {
-    "@brother-ql/core": "workspace:*",
-    "@brother-ql/transport-web": "workspace:*"
+    "@brother-ql/transport-web": "workspace:*",
+    "@brother-ql/web": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.3"

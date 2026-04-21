@@ -90,19 +90,6 @@ importers:
         specifier: ^1.0.14
         version: 1.0.14
 
-  packages/transport-web/demo:
-    dependencies:
-      '@brother-ql/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@brother-ql/transport-web':
-        specifier: workspace:*
-        version: link:..
-    devDependencies:
-      typescript:
-        specifier: ^5.8.3
-        version: 5.9.3
-
   packages/web:
     dependencies:
       '@brother-ql/core':
@@ -111,6 +98,19 @@ importers:
       '@brother-ql/transport-web':
         specifier: workspace:*
         version: link:../transport-web
+
+  packages/web/demo:
+    dependencies:
+      '@brother-ql/transport-web':
+        specifier: workspace:*
+        version: link:../../transport-web
+      '@brother-ql/web':
+        specifier: workspace:*
+        version: link:..
+    devDependencies:
+      typescript:
+        specifier: ^5.8.3
+        version: 5.9.3
 
 packages:
 

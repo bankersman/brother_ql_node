@@ -8,7 +8,7 @@ export default [
   {
     ignores: [
       "**/dist/**",
-      "packages/transport-web/demo/dist/**",
+      "packages/web/demo/dist/**",
       "coverage/**",
       "node_modules/**",
       "docs/.vitepress/dist/**",
@@ -37,7 +37,7 @@ export default [
     }
   },
   {
-    files: ["packages/transport-web/**/*.ts"],
+    files: ["packages/transport-web/**/*.ts", "packages/web/**/*.ts"],
     languageOptions: {
       parser,
       globals: {

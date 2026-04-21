@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brother QL — transport-web demo</title>
+    <title>Brother QL — @brother-ql/web demo</title>
     <style>
       body {
         font-family:
@@ -53,18 +53,20 @@
     </style>
   </head>
   <body>
-    <h1>Brother QL — browser transport demo</h1>
+    <h1>Brother QL — @brother-ql/web demo</h1>
     <p class="note">
-      Experimental UI for <code>@brother-ql/transport-web</code>. Use Chrome or
-      another browser with WebUSB. Raw TCP via <code>TCPSocket</code> is usually
-      limited to
+      Sample UI for <code>@brother-ql/web</code>. <strong>WebUSB</strong> is the
+      recommended path (Chrome, USB cable, secure context). Raw TCP via Chrome
+      <strong>Direct Sockets</strong> (<code>TCPSocket</code>) is
+      <strong>experimental</strong> — often unavailable or broken on a normal
+      page (including many <code>github.io</code> tabs); you can still try it,
+      but failures are expected. See
       <a
         href="https://developer.chrome.com/docs/iwa/direct-sockets"
         target="_blank"
         rel="noopener"
-        >Isolated Web Apps</a
-      >
-      or managed deployments — not a normal HTTPS page.
+        >Direct Sockets (IWA)</a
+      >.
     </p>
 
     <fieldset>
@@ -89,6 +91,10 @@
 
     <fieldset>
       <legend>Direct Sockets TCP (experimental)</legend>
+      <p class="note">
+        Bleeding edge: may not work in this browser tab. Connect checks that a
+        TCP session can be opened; each print uses a new client (new socket).
+      </p>
       <label for="tcp-host">Host</label>
       <input id="tcp-host" type="text" value="192.168.1.50" />
       <label for="tcp-port">Port</label>

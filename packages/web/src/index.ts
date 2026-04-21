@@ -1,8 +1,6 @@
-import {
-  generateBaselineCommand,
-  sendBlocking,
-  type BlockingSendResult
-} from "@brother-ql/core";
+import type { BlockingSendResult } from "@brother-ql/core/blocking-send";
+import { sendBlocking } from "@brother-ql/core/blocking-send";
+import { generateBaselineCommand } from "@brother-ql/core/command-generator";
 import {
   DirectSocketsTcpTransport,
   WebUsbTransport,
