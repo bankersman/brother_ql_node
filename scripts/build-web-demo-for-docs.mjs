@@ -40,12 +40,13 @@ run("pnpm", ["--filter", "@brother-ql/web-demo...", "run", "build"], {
 });
 
 const src = join(root, "packages", "web", "demo", "dist");
-const dest = join(root, "docs", "public", "web-demo");
+/** With `srcDir: "src"`, VitePress resolves `public` under `docs/src/public/`. */
+const dest = join(root, "docs", "src", "public", "web-demo");
 
 await rm(dest, { recursive: true, force: true });
-await mkdir(join(root, "docs", "public"), { recursive: true });
+await mkdir(join(root, "docs", "src", "public"), { recursive: true });
 await cp(src, dest, { recursive: true });
 
 console.log(
-  `Synced web demo (${demoBase}) to docs/public/web-demo for VitePress.`
+  `Synced web demo (${demoBase}) to docs/src/public/web-demo for VitePress.`
 );

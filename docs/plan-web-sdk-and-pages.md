@@ -13,7 +13,7 @@ todos:
     content: Move transport-web/demo to packages/web/demo; deps on @brother-ql/web; vite base via env; main.ts + index.html; TCP/WebUSB copy in UI
     status: pending
   - id: docs-embed
-    content: build:web-demo-for-docs; wire docs:build; copy dist to docs/public/web-demo; gitignore if generated; pages.yml + DEMO_BASE
+    content: build:web-demo-for-docs; wire docs:build; copy dist to docs/src/public/web-demo; gitignore if generated; pages.yml + DEMO_BASE
     status: pending
   - id: try-page
     content: VitePress try-in-browser page + nav/sidebar; optional home secondary "Try in browser"; link /web-demo/
@@ -106,7 +106,7 @@ Return values: align with Node where possible (`backend` discriminator, TCP incl
 **Recommended layout (avoid route clashes):**
 
 - Build the Vite app with a **`base`** that matches VitePress [`base`](.vitepress/config.ts) **plus** a dedicated subpath, e.g. **`{vitepressBase}web-demo/`** → for production project Pages, e.g. **`/brother-ql-node/web-demo/`** (exact string should follow `resolveBase()` + chosen folder name).
-- After `pnpm --filter @brother-ql/web-demo build`, copy **`packages/web/demo/dist`** → **`docs/public/web-demo/`** (VitePress copies `docs/public` verbatim into the site root). Resulting URL: **`https://<user>.github.io/<repo>/web-demo/`**.
+- After `pnpm --filter @brother-ql/web-demo build`, copy **`packages/web/demo/dist`** → **`docs/src/public/web-demo/`** (VitePress copies `docs/src/public` verbatim into the site root when `srcDir` is `src`). Resulting URL: **`https://<user>.github.io/<repo>/web-demo/`**.
 
 **`base` handling:**
 
@@ -114,7 +114,7 @@ Return values: align with Node where possible (`backend` discriminator, TCP incl
 
 **Orchestration:**
 
-- Add a root script (e.g. **`build:web-demo-for-docs`**) that: (1) builds workspace packages as needed, (2) builds `@brother-ql/web-demo` with the correct **`base`**, (3) syncs **`dist`** → **`docs/public/web-demo/`** (clean copy).
+- Add a root script (e.g. **`build:web-demo-for-docs`**) that: (1) builds workspace packages as needed, (2) builds `@brother-ql/web-demo` with the correct **`base`**, (3) syncs **`dist`** → **`docs/src/public/web-demo/`** (clean copy).
 - Change **`docs:build`** in root [`package.json`](../package.json) to run **`build:web-demo-for-docs`** before **`vitepress build docs`** so local and CI produce the same artifact.
 - Update **`.github/workflows/pages.yml`**: ensure **`GITHUB_REPOSITORY`** is available if the demo build derives base from it (match VitePress), or pass **`DEMO_BASE`** explicitly from `github.repository` so asset URLs match the deployed site.
 
@@ -127,7 +127,7 @@ flowchart LR
   end
   subgraph docsBuildInner [docs:build steps]
     webDemo[build web-demo with base]
-    publicCopy[copy to docs/public/web-demo]
+    publicCopy[copy to docs/src/public/web-demo]
     vp[vitepress build]
   end
   install --> docsBuild
@@ -155,7 +155,7 @@ flowchart LR
 - **Docs / root README:** update references to demo commands ([`README.md`](../README.md), [`docs/development-workflow.md`](development-workflow.md), [`packages/transport-web/README.md`](../packages/transport-web/README.md)) to `pnpm --filter @brother-ql/web-demo dev` and document **`pnpm docs:build`** including the demo bundle.
 - **New `packages/web/README.md`** modeled on the Node README (install, usage snippet, related packages).
 - **Release script:** [`scripts/assert-release-version.mjs`](../scripts/assert-release-version.mjs) iterates `packages/*`; add **`packages/web/package.json`** with the same **version** as other publishable packages when cutting releases.
-- **Gitignore:** prefer **`docs/public/web-demo/`** gitignored as a generated artifact so CI always builds it; or commit for simpler forks — team choice.
+- **Gitignore:** prefer **`docs/src/public/web-demo/`** gitignored as a generated artifact so CI always builds it; or commit for simpler forks — team choice.
 
 ---
 

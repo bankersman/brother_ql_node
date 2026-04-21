@@ -11,7 +11,7 @@ export default [
       "packages/web/demo/dist/**",
       "coverage/**",
       "node_modules/**",
-      "docs/public/**",
+      "docs/src/public/**",
       "docs/.vitepress/dist/**",
       "docs/.vitepress/cache/**",
       "scripts/**/*.mjs"

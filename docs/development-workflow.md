@@ -12,9 +12,9 @@
 
 ## Documentation site and embedded web demo
 
-`pnpm docs:build` runs `build:web-demo-for-docs` first: it builds `@brother-ql/web-demo` with a `base` path aligned to VitePress, copies the output to `docs/public/web-demo/`, then runs `vitepress build`. The static demo is served at `/web-demo/` on the deployed site.
+`pnpm docs:build` runs `build:web-demo-for-docs` first: it builds `@brother-ql/web-demo` with a `base` path aligned to VitePress, copies the output to `docs/src/public/web-demo/` (VitePress `public` lives next to `srcDir`, which is `docs/src`), then runs `vitepress build`. The static demo is served at `/web-demo/` on the deployed site.
 
-For local VitePress dev, `/web-demo/` is only present after a successful `pnpm docs:build` (or after running `pnpm run build:web-demo-for-docs` alone), because `docs/public` is copied into the dev server.
+For local VitePress dev, `/web-demo/` is only present after a successful `pnpm docs:build` (or after running `pnpm run build:web-demo-for-docs` alone), because that folder is merged into the VitePress output from `docs/src/public`.
 
 ## Browser demo (development server)
 
