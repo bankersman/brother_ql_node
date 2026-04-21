@@ -15,6 +15,9 @@ and this project aims to follow Semantic Versioning.
 - Registry validation layer:
   - Added typed model/label registry accessors sourced from upstream JSON data
   - Added model-label restriction validation and two-color label capability checks
+- Image pipeline foundation:
+  - Added RGBA normalization and geometry transform helpers for QL conversion flow
+  - Added mono threshold/dither conversion and two-color mask extraction helpers
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`

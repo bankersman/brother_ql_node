@@ -6,7 +6,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
 
 - [x] Phase 1: Freeze Scaffolding and Define Parity Contracts
 - [x] Phase 2: Model/Label Registry and Validation Layer
-- [ ] Phase 3: Real Image Conversion Pipeline (Parity-Critical)
+- [x] Phase 3: Real Image Conversion Pipeline (Parity-Critical)
 - [ ] Phase 4: Raster/Protocol Encoder Replacement
 - [ ] Phase 5: Status Frame Parser + Blocking Send Semantics
 - [ ] Phase 6: Transport Parity
@@ -37,3 +37,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
   - Added typed model and label registry helpers backed by upstream datasets
   - Added compatibility validation for restricted model-label combinations
   - Added two-color support validation for red labels
+- Completed Phase 3:
+  - Added image pipeline module with alpha normalization, geometry transforms, and auto-rotate validation
+  - Added mono conversion logic with threshold and Floyd-Steinberg dither paths
+  - Added two-color mask extraction helpers and test coverage
