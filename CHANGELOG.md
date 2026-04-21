@@ -50,3 +50,6 @@ and this project aims to follow Semantic Versioning.
 - CLI parity commands:
   - Added `print`, `send`, `info models`, and `info labels` command handlers
   - Added command-path test coverage and usage fallback output
+- Documentation updates:
+  - Added root/package READMEs with usage and architecture context
+  - Added `CONTRIBUTING.md` and development workflow documentation

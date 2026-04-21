@@ -15,7 +15,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 8 - USB Backend for Node
 - [x] Step 9 - High-Level Node SDK API
 - [x] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
-- [ ] Step 11 - Developer and Consumer Documentation
+- [x] Step 11 - Developer and Consumer Documentation
 - [ ] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
 - [ ] Step 13 - CI/CD Automation (GitHub Actions)
 - [ ] Step 14 - GitHub Pages Developer Docs
@@ -70,3 +70,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added V1 command handlers for `print`, `send`, `info models`, and `info labels`
   - Added stable usage output for unsupported command forms
   - Added CLI command coverage tests for key command paths
+- Completed Step 11 documentation:
+  - Added root README with package overview and development commands
+  - Added package READMEs for core and node transport packages
+  - Added contribution guide and development workflow documentation
