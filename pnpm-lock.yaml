@@ -103,6 +103,15 @@ importers:
         specifier: ^5.8.3
         version: 5.9.3
 
+  packages/web:
+    dependencies:
+      '@brother-ql/core':
+        specifier: workspace:*
+        version: link:../core
+      '@brother-ql/transport-web':
+        specifier: workspace:*
+        version: link:../transport-web
+
 packages:
 
   '@algolia/abtesting@1.16.2':

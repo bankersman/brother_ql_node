@@ -1,0 +1,112 @@
+import {
+  generateBaselineCommand,
+  sendBlocking,
+  type BlockingSendResult
+} from "@brother-ql/core";
+import {
+  DirectSocketsTcpTransport,
+  WebUsbTransport,
+  type WebUsbTransportOptions
+} from "@brother-ql/transport-web";
+
+export type WebBackend = "webusb" | "tcp";
+
+export interface BrotherQlWebClientOptions {
+  backend: WebBackend;
+  /** Used when `backend` is `"tcp"` (Chrome Direct Sockets `TCPSocket`, not Node `net`). */
+  host?: string;
+  port?: number;
+  transportFactory?: {
+    createWebUsbTransport(options?: WebUsbTransportOptions): WebUsbTransport;
+    createTcpTransport(input: {
+      host: string;
+      port: number;
+    }): DirectSocketsTcpTransport;
+  };
+}
+
+export type BrotherQlWebPrintResult =
+  | {
+      ok: boolean;
+      backend: "webusb";
+      result: BlockingSendResult;
+    }
+  | {
+      ok: boolean;
+      backend: "tcp";
+      result: BlockingSendResult;
+    };
+
+export class BrotherQlWebClient {
+  private webUsbTransport: WebUsbTransport | undefined;
+
+  constructor(private readonly options: BrotherQlWebClientOptions) {}
+
+  /**
+   * Establish a persistent WebUSB session. Required before `print()` when
+   * `backend` is `"webusb"` (browser device selection and user-gesture rules).
+   */
+  async connect(webUsbOptions?: WebUsbTransportOptions): Promise<void> {
+    if (this.options.backend !== "webusb") {
+      throw new Error('connect() is only supported when backend is "webusb".');
+    }
+
+    if (this.webUsbTransport) {
+      await this.webUsbTransport.dispose();
+      this.webUsbTransport = undefined;
+    }
+
+    this.webUsbTransport =
+      this.options.transportFactory?.createWebUsbTransport(webUsbOptions) ??
+      new WebUsbTransport(webUsbOptions);
+    await this.webUsbTransport.connect();
+  }
+
+  /** Release the WebUSB device. No-op when `backend` is not `"webusb"` or nothing is connected. */
+  async dispose(): Promise<void> {
+    if (this.webUsbTransport) {
+      await this.webUsbTransport.dispose();
+      this.webUsbTransport = undefined;
+    }
+  }
+
+  async print(input: {
+    model: string;
+    label: string;
+    imageBytes: Uint8Array;
+    timeoutMs?: number;
+  }): Promise<BrotherQlWebPrintResult> {
+    const command = generateBaselineCommand({
+      model: input.model,
+      label: input.label,
+      imageBytes: input.imageBytes
+    });
+
+    if (this.options.backend === "webusb") {
+      if (!this.webUsbTransport) {
+        throw new Error(
+          "WebUSB print requires an active connection; call connect() first."
+        );
+      }
+      const result = await sendBlocking({
+        transport: this.webUsbTransport,
+        payload: command.bytes,
+        timeoutMs: input.timeoutMs ?? 30_000
+      });
+      return { ok: result.completed, backend: "webusb", result };
+    }
+
+    const host = this.options.host ?? "127.0.0.1";
+    const port = this.options.port ?? 9100;
+    const transport =
+      this.options.transportFactory?.createTcpTransport({ host, port }) ??
+      new DirectSocketsTcpTransport({ host, port });
+    const result = await sendBlocking({
+      transport,
+      payload: command.bytes,
+      timeoutMs: input.timeoutMs ?? 15_000
+    });
+    await transport.dispose();
+    return { ok: result.completed, backend: "tcp", result };
+  }
+}
