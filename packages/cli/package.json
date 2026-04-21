@@ -1,6 +1,6 @@
 {
   "name": "@brother-ql/cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -25,5 +25,18 @@
   },
   "dependencies": {
     "@brother-ql/core": "workspace:*"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brother-ql/brother-ql-node.git"
+  },
+  "homepage": "https://bankersman.github.io/brother-ql-node/",
+  "bugs": {
+    "url": "https://github.com/brother-ql/brother-ql-node/issues"
+  },
+  "keywords": [
+    "brother",
+    "ql",
+    "printer"
+  ]
 }
