@@ -38,3 +38,6 @@ and this project aims to follow Semantic Versioning.
 - Node TCP transport backend:
   - Added network transport implementation for raw TCP (`9100`) printer communication
   - Added lifecycle and timeout semantics with integration-style coverage
+- Blocking send status semantics:
+  - Added blocking send helper with timeout-bounded status polling
+  - Added status frame decode utility and completion/error ambiguity handling

@@ -11,7 +11,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 4 - Command Generation MVP
 - [x] Step 5 - Command Generation Parity Expansion
 - [x] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
-- [ ] Step 7 - Blocking Send and Status Semantics
+- [x] Step 7 - Blocking Send and Status Semantics
 - [ ] Step 8 - USB Backend for Node
 - [ ] Step 9 - High-Level Node SDK API
 - [ ] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
@@ -54,3 +54,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added TCP transport backend with connect, write, read, and dispose lifecycle
   - Added timeout handling for connect/write/read operations
   - Added integration-style tests for successful flow and read timeout behavior
+- Completed Step 7 blocking send semantics:
+  - Added blocking send flow that polls status readback to timeout window
+  - Added status frame decoding and success/error completion criteria
+  - Added tests for success, explicit error, and ambiguous timeout scenarios
