@@ -61,3 +61,5 @@ and this project aims to follow Semantic Versioning.
   - Added release workflow scaffold and status badges
 - GitHub Pages docs:
   - Added docs publication workflow and developer docs landing page content
+- Release candidate hardening:
+  - Added V1 release-candidate checklist covering quality, consistency, and readiness gates

@@ -19,7 +19,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
 - [x] Step 13 - CI/CD Automation (GitHub Actions)
 - [x] Step 14 - GitHub Pages Developer Docs
-- [ ] Step 15 - Hardening and Release Candidate
+- [x] Step 15 - Hardening and Release Candidate
 
 ## Log
 
@@ -86,3 +86,6 @@ Tracking implementation progress against `PLAN.md`.
   - Added Pages deployment workflow via GitHub Actions
   - Added developer docs landing content under `docs/site`
   - Wired docs publishing into CI-style automation
+- Completed Step 15 hardening and release candidate preparation:
+  - Added release candidate checklist for final quality and consistency pass
+  - Captured changelog/progress/CI readiness criteria for V1 handoff
