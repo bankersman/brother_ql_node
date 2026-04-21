@@ -21,3 +21,7 @@ and this project aims to follow Semantic Versioning.
     - `@brother-ql/transport-node`
     - `@brother-ql/cli`
     - `@brother-ql/transport-web`
+- Core API contracts and types:
+  - Added printer, label, print option, command buffer, and status frame domain contracts
+  - Added runtime-agnostic transport interface and request types
+  - Added exports map entries for package root and contracts entry point

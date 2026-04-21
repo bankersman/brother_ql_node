@@ -6,7 +6,7 @@ Tracking implementation progress against `PLAN.md`.
 
 - [x] Step 0 - Repository Bootstrap and Planning Ledger
 - [x] Step 1 - Workspace and Tooling Foundation
-- [ ] Step 2 - Core Package Skeleton (`@brother-ql/core`)
+- [x] Step 2 - Core Package Skeleton (`@brother-ql/core`)
 - [ ] Step 3 - Golden Fixture Harness
 - [ ] Step 4 - Command Generation MVP
 - [ ] Step 5 - Command Generation Parity Expansion
@@ -34,3 +34,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added TypeScript strict base config, ESLint config, Prettier config, and Vitest setup
   - Scaffolded package layout for `core`, `transport-node`, `cli`, and `transport-web`
   - Added initial scaffold tests and passed full quality gate locally
+- Completed Step 2 core package skeleton:
+  - Added core domain contracts for models, labels, options, command buffers, status frames, and transport interface
+  - Added package exports map for root and contracts entry points
+  - Added type-level coverage in unit tests for contract usability
