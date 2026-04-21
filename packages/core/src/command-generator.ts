@@ -1,4 +1,8 @@
 import type { CommandBuffer, PrintOptions } from "./contracts.js";
+import {
+  validateModelLabelCompatibility,
+  validateTwoColorSupport
+} from "./registry.js";
 
 export interface CommandGenerationRequest {
   model: string;
@@ -15,6 +19,10 @@ export function generateBaselineCommand(
   }
   if (!request.label.trim()) {
     throw new Error("Label is required.");
+  }
+  validateModelLabelCompatibility(request.model, request.label);
+  if (request.options?.colorMode === "red-black") {
+    validateTwoColorSupport(request.model, request.label);
   }
 
   const options = request.options ?? {};

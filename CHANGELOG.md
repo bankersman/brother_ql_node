@@ -12,6 +12,9 @@ and this project aims to follow Semantic Versioning.
 - Parity remediation baseline:
   - Added `docs/analysis/parity-matrix.md` mapping upstream `brother_ql` responsibilities to TypeScript targets
   - Documented strict parity acceptance criteria and known non-parity scaffold paths
+- Registry validation layer:
+  - Added typed model/label registry accessors sourced from upstream JSON data
+  - Added model-label restriction validation and two-color label capability checks
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`
