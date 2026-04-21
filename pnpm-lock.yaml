@@ -43,7 +43,11 @@ importers:
 
   packages/core: {}
 
-  packages/transport-node: {}
+  packages/transport-node:
+    dependencies:
+      usb:
+        specifier: ^2.17.0
+        version: 2.17.0
 
   packages/transport-web: {}
 
@@ -418,6 +422,9 @@ packages:
 
   '@types/node@24.12.2':
     resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
+
+  '@types/w3c-web-usb@1.0.14':
+    resolution: {integrity: sha512-Qu3Nn6JFuF4+sHKYl+IcX9vYiI40ogleXzFFSxoE1W94rG98o/kXs8uJ0QSfFzuwBCZWlGfUGpPkgwuuX4PchA==}
 
   '@typescript-eslint/eslint-plugin@8.59.0':
     resolution: {integrity: sha512-HyAZtpdkgZwpq8Sz3FSUvCR4c+ScbuWa9AksK2Jweub7w4M3yTz4O11AqVJzLYjy/B9ZWPyc81I+mOdJU/bDQw==}
@@ -801,6 +808,14 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  node-addon-api@8.7.0:
+    resolution: {integrity: sha512-9MdFxmkKaOYVTV+XVRG8ArDwwQ77XIgIPyKASB1k3JPq3M8fGQQQE3YpMOrKm6g//Ktx8ivZr8xo1Qmtqub+GA==}
+    engines: {node: ^18 || ^20 || >= 21}
+
+  node-gyp-build@4.8.4:
+    resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
+    hasBin: true
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -944,6 +959,10 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  usb@2.17.0:
+    resolution: {integrity: sha512-UuFgrlglgDn5ll6d5l7kl3nDb2Yx43qLUGcDq+7UNLZLtbNug0HZBb2Xodhgx2JZB1LqvU+dOGqLEeYUeZqsHg==}
+    engines: {node: '>=12.22.0 <13.0 || >=14.17.0'}
 
   vite-node@3.2.4:
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
@@ -1269,6 +1288,8 @@ snapshots:
   '@types/node@24.12.2':
     dependencies:
       undici-types: 7.16.0
+
+  '@types/w3c-web-usb@1.0.14': {}
 
   '@typescript-eslint/eslint-plugin@8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)':
     dependencies:
@@ -1694,6 +1715,10 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  node-addon-api@8.7.0: {}
+
+  node-gyp-build@4.8.4: {}
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -1828,6 +1853,12 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  usb@2.17.0:
+    dependencies:
+      '@types/w3c-web-usb': 1.0.14
+      node-addon-api: 8.7.0
+      node-gyp-build: 4.8.4
 
   vite-node@3.2.4(@types/node@24.12.2):
     dependencies:

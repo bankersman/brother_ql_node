@@ -41,3 +41,6 @@ and this project aims to follow Semantic Versioning.
 - Blocking send status semantics:
   - Added blocking send helper with timeout-bounded status polling
   - Added status frame decode utility and completion/error ambiguity handling
+- USB backend and discovery:
+  - Added `usb` (node-usb) integration adapter for Node USB device enumeration
+  - Added USB transport scaffold and test-covered discovery entry point
