@@ -3,5 +3,10 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["packages/**/*.ts", "vitest.config.ts", "eslint.config.mjs"]
+  "include": [
+    "packages/**/*.ts",
+    "vitest.config.ts",
+    "eslint.config.mjs",
+    "docs/.vitepress/**/*.ts"
+  ]
 }
