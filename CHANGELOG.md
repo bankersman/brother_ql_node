@@ -18,6 +18,9 @@ and this project aims to follow Semantic Versioning.
 - Image pipeline foundation:
   - Added RGBA normalization and geometry transform helpers for QL conversion flow
   - Added mono threshold/dither conversion and two-color mask extraction helpers
+- Raster encoder replacement:
+  - Replaced placeholder command payload generation with raster-row command emission
+  - Added protocol framing for initialize/status/media packets and print terminator
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`
